@@ -1,0 +1,16 @@
+<ul class="tester" ng-repeat="buck in testArray">
+  <li>{{ buck }}</li>
+</ul>
+
+<h3 id="main-title">Hello, Test Title!</h3>
+
+<div id="repoform" class="main" ng-if="!repoName">
+  <form ng-submit="getIssues()" class="input-group">
+    <div class="input-group">
+      <input type="text" ng-model='repo.name' placeholder='Enter repo name' />
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-primary" value="Search">
+      </span>
+    </div>
+  </form>
+</div>
