@@ -1,16 +1,20 @@
-<ul class="tester" ng-repeat="buck in testArray">
-  <li>{{ buck }}</li>
-</ul>
+<h1>I'd like to practice speaking</h1>
+<!--<input type="text" placeholder="Spanish" ng-model="search"/>-->
+<!--<div ng-repeat="language in languages | orderByPriority | filter:search ">-->
+<!--{{language.name}}-->
+<!--</div>-->
+<select ng-model="practiceLanguage" required ng-options="value.name for (key, value) in languages"></select>
+<button ng-click="findSpeakers()">Start</button>
 
-<h3 id="main-title">Hello, Test Title!</h3>
-
-<div id="repoform" class="main" ng-if="!repoName">
-  <form ng-submit="getIssues()" class="input-group">
-    <div class="input-group">
-      <input type="text" ng-model='repo.name' placeholder='Enter repo name' />
-      <span class="input-group-btn">
-        <input type="submit" class="btn btn-primary" value="Search">
-      </span>
-    </div>
-  </form>
-</div>
+        <div ng-show="speakers">
+          <div ng-show="speakerCount">
+            <h4>Cool! There are {{ speakerCount }} people who would love to chat with you in {{ practiceLanguage.name }}!</h4>
+            <div ng-repeat="speaker in speakers">
+              <a ng-href="/#/users/{{speaker.$id}}">{{speaker.username}}</a>
+              <p>{{speaker.about}}</p>
+            </div>
+          </div>
+          <div ng-hide="speakerCount">
+            <h4>Aw, nuts! We can't find anyone who wants to help you learn {{ practiceLanguage.name }}. </h4>
+          </div>
+        </div>

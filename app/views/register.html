@@ -1,10 +1,16 @@
 <div class="auth-forms">
   <h2>Register</h2>
 
-  <form name="registration" novalidate ng-submit="register()">
+  <form name="registration" novalidate ng-submit="createAccount()">
     <code ng-show="error">{{error}}</code>
     <input type="email" placeholder="yourname@email.com" name="email" id="email" class="form-control" ng-model="user.email"/>
     <input type="password" placeholder="password" name="password" id="password" class="form-control" ng-model="user.password"/>
+    <label>
+      <span>confirm password</span>
+      <input type="password" ng-model="confirm" />
+    </label>
     <input type="submit" value="Register" class="btn btn-primary"/>
+    <p ng-show="err" class="error">{{err}}</p>
   </form>
 </div>
+

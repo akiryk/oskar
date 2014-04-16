@@ -4,4 +4,6 @@ dist
 .sass-cache
 .idea/workspace.xml
 .idea/tasks.xml
+.DS_Store
+app/.DS_Store
 app/bower_components

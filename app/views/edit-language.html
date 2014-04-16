@@ -1,0 +1,15 @@
+<div class="auth-forms">
+  <h2>Add a language</h2>
+  <p>Just don't mess it up.</p>
+
+  <form name="languageform" novalidate ng-submit="addLanguage()">
+    <code ng-show="error">{{error}}</code>
+    <input type="text" placeholder="Name of Language" name="lang" class="form-control" ng-model="language.name"/>
+    <input type="text" placeholder="Native name" name="native-name" class="form-control" ng-model="language.nativeName"/>
+    <input type="submit" value="Add This Language" class="btn btn-primary"/>
+  </form>
+</div>
+
+       <ul ng-repeat="language in data.languages">
+         <li>{{language.name}}</li>
+       </ul>

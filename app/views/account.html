@@ -1,0 +1,94 @@
+<div ng-show="auth.user">
+
+  <form class="form-horizontal" ng-submit="updateAccount()" novalidate>
+    <div class="control-group">
+      <label class="control-label" for="username">Username</label>
+      <div class="controls">
+        <input type="text" placeholder="Username" name="username" id="username" ng-model="user.username"/>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="firstname">First name</label>
+      <div class="controls">
+        <input type="text" placeholder="Firstname" name="firstname" id="firstname" ng-model="user.firstname"/>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="lastname">Last name</label>
+      <div class="controls">
+        <input type="text" placeholder="Lastname" name="lastname" id="lastname" ng-model="user.lastname"/>
+      </div>
+    </div>
+
+    <div class="control-group">
+
+      <label class="control-label" for="about">Tell the world about yourself</label>
+      <div class="controls">
+        <textarea id="about" id="about" rows="6" ng-model="user.about"></textarea>
+      </div>
+      <div class="controls">
+        <button type="submit">Save Changes</button>
+      </div>
+    </div>
+
+  </form>
+
+  <form name="my-languages" novalidate ng-submit="updateUserLanguage()">
+    <h1>Hi, {{user.firstname || user.username}}, what is your primary language?</h1>
+    <p>Because it's currently {{ languages[user.motherTongue].name }}</p>
+    <select ng-model="userLanguage" required ng-options="key as value.name for (key, value) in languages"></select>
+
+    <input ng-show="languages" type="submit" value="Submit"/>
+  </form>
+
+  <div ng-show="msgs.success">
+    {{ msgs.success}}
+    <p>Your new language preference is {{ languages[userLanguage].name }}</p>
+  </div>
+
+  <fieldset>
+    <legend>Change Password</legend>
+
+    <label>
+      <span>Old Password:</span>
+      <input type="password" ng-keypress="reset()" ng-model="oldpass"/>
+    </label>
+
+    <label>
+      <span>New Password:</span>
+      <input type="password" ng-keypress="reset()" ng-model="newpass"/>
+    </label>
+
+    <label>
+      <span>Confirm Password:</span>
+      <input type="password" ng-keypress="reset()" ng-model="confirm"/>
+    </label>
+
+    <button ng-click="updatePassword()">update password</button>
+
+    <p class="error" ng-show="msgs.err">{{msgs.err}}</p>
+    <p class="good" ng-show="msgs.msg">{{msgs.msg}}</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Change Email</legend>
+
+    <label>
+      <span>New Email:</span>
+      <input type="text" ng-keypress="reset()" ng-model="newemail"/>
+    </label>
+
+    <label>
+      <span>Password:</span>
+      <input type="password" ng-keypress="reset()" ng-model="pass"/>
+    </label>
+
+    <button ng-click="updateEmail()">update email</button>
+
+    <p class="error" ng-show="msgs.emailerr">{{msgs.emailerr}}</p>
+    <p class="good" ng-show="msgs.emailmsg">{{msgs.emailmsg}}</p>
+  </fieldset>
+  </form>
+</div>
