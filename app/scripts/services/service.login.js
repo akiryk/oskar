@@ -2,7 +2,7 @@
 
 angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
 
-  .factory('loginService', ['$rootScope', '$firebaseSimpleLogin', '$timeout', 'firebaseRef', 'presenceService',
+  .factory('loginService',
     function($rootScope, $firebaseSimpleLogin, $timeout, firebaseRef, presenceService) {
 
       var auth = null;
@@ -40,6 +40,7 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
         logout: function() {
           assertAuth();
           auth.$logout();
+          presenceService.end();
         },
 
         changePassword: function(opts) {
@@ -72,4 +73,4 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
         }
       };
 
-    }]);
+    });

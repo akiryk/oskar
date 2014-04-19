@@ -1,3 +1,9 @@
+/*
+ * From AngularFire Seed Project
+ * https://github.com/firebase/angularFire-seed/
+ *
+ */
+
 'use strict';
 
 (function(angular) {

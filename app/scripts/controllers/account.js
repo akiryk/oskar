@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('myApp')
-  .controller('AccountCtrl', ['$scope', 'loginService', 'userService', 'languageService', 'changeEmailService',
+  .controller('AccountCtrl',
     function($scope, loginService, userService, languageService, changeEmailService) {
 
       $scope.languages = languageService.all;
-
       $scope.user = userService.findByUid($scope.auth.user.uid);
-      $scope.user.$on('loaded', function(){
+      $scope.user.$on('loaded', function () {
         $scope.userLanguage = $scope.user.motherTongue;
       });
 
@@ -17,7 +16,7 @@ angular.module('myApp')
 
       $scope.msgs = {};
 
-      $scope.reset = function() {
+      $scope.reset = function () {
         $scope.msgs = {
           err: null,
           msg: null,
@@ -31,21 +30,21 @@ angular.module('myApp')
         teacher: 'true'
       };
 
-      $scope.updateUserLanguage = function(){
+      $scope.updateUserLanguage = function () {
 
         if ($scope.user.motherTongue && $scope.user.motherTongue !== $scope.userLanguage) {
           // a new primary language!
           languageService.removeUserFromLang($scope.auth.user.uid, $scope.user.motherTongue);
         }
         $scope.user.$child('motherTongue').$set($scope.userLanguage)
-          .then(function() {
+          .then(function () {
             $scope.msgs.success = 'You did it, yo...';
           })
-          .then(function(){
+          .then(function () {
             var lang = languageService.find($scope.userLanguage);
-            lang.$on('loaded', function(){
+            lang.$on('loaded', function () {
               lang.$child('speakers').$child($scope.user.$id).$set($scope.user.$id);
-              if ($scope.formData.teacher === 'true'){
+              if ($scope.formData.teacher === 'true') {
                 lang.$child('teachers').$child($scope.user.$id).$set($scope.user.$id);
               }
             });
@@ -53,16 +52,16 @@ angular.module('myApp')
         );
       };
 
-      $scope.updateAccount = function(){
+      $scope.updateAccount = function () {
         userService.updateDetails($scope.user);
       };
 
-      $scope.updatePassword = function() {
+      $scope.updatePassword = function () {
         $scope.reset();
         loginService.changePassword(buildPwdParms());
       };
 
-      $scope.updateEmail = function() {
+      $scope.updateEmail = function () {
         $scope.reset();
         changeEmailService(buildEmailParms());
       };
@@ -73,8 +72,8 @@ angular.module('myApp')
           oldpass: $scope.oldpass,
           newpass: $scope.newpass,
           confirm: $scope.confirm,
-          callback: function(err) {
-            if( err ) {
+          callback: function (err) {
+            if (err) {
               $scope.err = err;
             }
             else {
@@ -86,12 +85,13 @@ angular.module('myApp')
           }
         };
       }
+
       function buildEmailParms() {
         return {
           newEmail: $scope.newemail,
           pass: $scope.pass,
-          callback: function(err) {
-            if( err ) {
+          callback: function (err) {
+            if (err) {
               $scope.emailerr = err;
             }
             else {
@@ -104,5 +104,4 @@ angular.module('myApp')
       }
 
     }
-  ]
 );

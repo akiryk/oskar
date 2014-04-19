@@ -1,14 +1,10 @@
 'use strict';
 
-myApp.controller('MainCtrl', function ($scope, userService, languageService) {
+myApp.controller('MainCtrl', function ($scope, userService, languageService, presenceService) {
 
   $scope.languages = languageService.all;
   $scope.form = {
     practiceLanguage: ''
-  };
-
-  $scope.isItTrue = function(){
-    return true;
   };
 
   $scope.findSpeakers = function(){

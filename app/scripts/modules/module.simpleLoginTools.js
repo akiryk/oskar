@@ -1,3 +1,9 @@
+/*
+ * From AngularFire Seed Project
+ * https://github.com/firebase/angularFire-seed/
+ *
+ */
+
 'use strict';
 
 /**
@@ -31,7 +37,6 @@ angular.module('simpleLoginTools', [])
  */
   .service('waitForAuth', function($rootScope, $q, $timeout) {
     function fn(err) {
-      console.log('waitForAuth service');
       if($rootScope.auth) {
         $rootScope.auth.error = err instanceof Error? err.toString() : null;
       }

@@ -10,6 +10,8 @@
       'myApp.service.firebase',
       'myApp.service.language',
       'myApp.service.presence',
-      'myApp.service.changeEmail'
+      'myApp.service.changeEmail',
+      'simpleLoginTools',
+      'routeSecurity'
     ]);
 })();
