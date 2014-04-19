@@ -3,12 +3,13 @@
 angular.module('myApp')
   .controller('AccountCtrl', ['$scope', 'loginService', 'userService', 'languageService', 'changeEmailService',
     function($scope, loginService, userService, languageService, changeEmailService) {
-    
+
+      $scope.languages = languageService.all;
+
       $scope.user = userService.findByUid($scope.auth.user.uid);
       $scope.user.$on('loaded', function(){
-        console.log($scope.user);
+        $scope.userLanguage = $scope.user.motherTongue;
       });
-      $scope.languages = languageService.all;
 
       $scope.oldpass = null;
       $scope.newpass = null;
@@ -23,7 +24,11 @@ angular.module('myApp')
           emailerr: null,
           emailmsg: null,
           success: null
-          };
+        };
+      };
+
+      $scope.formData = {
+        teacher: 'true'
       };
 
       $scope.updateUserLanguage = function(){
@@ -34,16 +39,18 @@ angular.module('myApp')
         }
         $scope.user.$child('motherTongue').$set($scope.userLanguage)
           .then(function() {
-            $scope.msgs.success = "You did it, yo...";
+            $scope.msgs.success = 'You did it, yo...';
           })
           .then(function(){
             var lang = languageService.find($scope.userLanguage);
             lang.$on('loaded', function(){
               lang.$child('speakers').$child($scope.user.$id).$set($scope.user.$id);
-            })
+              if ($scope.formData.teacher === 'true'){
+                lang.$child('teachers').$child($scope.user.$id).$set($scope.user.$id);
+              }
+            });
           }
         );
-
       };
 
       $scope.updateAccount = function(){

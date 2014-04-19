@@ -1,20 +1,19 @@
-<h1>I'd like to practice speaking</h1>
-<!--<input type="text" placeholder="Spanish" ng-model="search"/>-->
-<!--<div ng-repeat="language in languages | orderByPriority | filter:search ">-->
-<!--{{language.name}}-->
-<!--</div>-->
-<select ng-model="practiceLanguage" required ng-options="value.name for (key, value) in languages"></select>
-<button ng-click="findSpeakers()">Start</button>
-
-        <div ng-show="speakers">
-          <div ng-show="speakerCount">
-            <h4>Cool! There are {{ speakerCount }} people who would love to chat with you in {{ practiceLanguage.name }}!</h4>
-            <div ng-repeat="speaker in speakers">
-              <a ng-href="/#/users/{{speaker.$id}}">{{speaker.username}}</a>
-              <p>{{speaker.about}}</p>
-            </div>
-          </div>
-          <div ng-hide="speakerCount">
-            <h4>Aw, nuts! We can't find anyone who wants to help you learn {{ practiceLanguage.name }}. </h4>
-          </div>
-        </div>
+<div class="small-12 large-12 columns">
+  <h1>I'd like to practice speaking</h1>
+  <select ng-model="form.practiceLanguage" required ng-change="findSpeakers()"
+          ng-options="value.name for (key, value) in languages | orderByPriority | orderObjects: 'name'">
+    <option value="">Choose a language...</option>
+  </select>
+  <div ng-show="speakers">
+    <div ng-show="speakerCount">
+      <h4>Cool! There are {{ speakerCount }} people who would love to chat with you in {{ form.practiceLanguage.name }}!</h4>
+      <div ng-repeat="speaker in speakers">
+        <a ng-href="/#/users/{{speaker.$id}}">{{speaker.username}}</a>
+        <p>{{speaker.about}}</p>
+      </div>
+    </div>
+    <div ng-hide="speakerCount">
+      <h4>Aw, nuts! We can't find anyone who wants to help you learn {{ form.practiceLanguage.name }}. </h4>
+    </div>
+  </div>
+</div>

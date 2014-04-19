@@ -25,10 +25,7 @@ angular.module('myApp.service.firebase', ['firebase'])
      * @return a Firebase instance
      */
     return function(path, limit) {
-      console.log('path: ' + path);
-      console.log('limit: ' + limit);
       var ref = firebaseRef(path);
-      console.log(ref);
       limit && (ref = ref.limit(limit));
       return $firebase(ref);
     };

@@ -40,7 +40,23 @@
     <p>Because it's currently {{ languages[user.motherTongue].name }}</p>
     <select ng-model="userLanguage" required ng-options="key as value.name for (key, value) in languages"></select>
 
-    <input ng-show="languages" type="submit" value="Submit"/>
+    <div class="form-group">
+      <label>Look, are you willing to help people learn {{languages[user.motherTongue].name}} or not?</label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="teacher" value="true" ng-model="formData.teacher">
+          Yes, I'm willing
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="teacher" value="false" ng-model="formData.teacher">
+          No, I'm not.
+        </label>
+      </div>
+    </div>
+
+    <input ng-show="languages" type="submit" value="Submit" class="button"/>
   </form>
 
   <div ng-show="msgs.success">

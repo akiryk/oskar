@@ -1,31 +1,27 @@
-<nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
+<div class="contain-to-grid" ng-controller="NavCtrl">
+  <nav class="top-bar" data-topbar>
+    <section class="top-bar-section">
+      <ul class="left">
+        <a class="navbar-brand" href="#">Prototype</a>
+      </ul>
+    </section>
 
-    <a class="navbar-brand" href="#">Prototype</a>
-  </div>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div ng-controller="NavCtrl" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right" ng-show="auth.user">
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right" ng-show="auth.user">
+        <li><a href="#/account"><img ng-src="http://www.gravatar.com/avatar/{{ auth.user.md5_hash }}" class="nav-pic" /> {{user.username}}</a></li>
+        <li>
+          <a href="#" ng-click="logout()">Logout</a>
+        </li>
+      </ul>
+      <ul class="right" ng-hide="auth.user">
+        <li><a href="#/register">Register</a></li>
+        <li>
+          <a href="#/login">Login</a>
+        </li>
+      </ul>
+    </section>
 
-      <li>
-        <a href="#/account">
-          <img ng-src="http://www.gravatar.com/avatar/{{ auth.user.md5_hash }}" class="nav-pic" />
-        </a>
-      </li>
-      {{ user.username }}
-      <li>
-        <a href="#" ng-click="logout()">Logout</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right" ng-hide="auth.user">
-      <li>
-        <a href="#/register">Register</a>
-      </li>
-      <li>
-        <a href="#/login">Log In</a>
-      </li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+  </nav>
+</div>

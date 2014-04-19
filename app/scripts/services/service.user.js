@@ -10,20 +10,7 @@ angular.module('myApp.service.user', [])
     var users = $firebase(ref);
 
     var User = {
-//      create: function (authUser, username) {
-//        users[username] = {
-//          /* jshint camelcase: false */
-//          md5_hash: authUser.md5_hash,
-//          username: username,
-//          $priority: authUser.uid
-//        };
-//
-//        users.$save(username).then(function () {
-//          setCurrentUser(username);
-//        });
-//      },
       create: function (user, callback) {
-        // Helper functions
         var uid = user.uid,
             email = user.email;
 
@@ -32,7 +19,6 @@ angular.module('myApp.service.user', [])
         };
 
         var ucfirst = function (str) {
-          // credits: http://kevin.vanzonneveld.net
           str += '';
           var f = str.charAt(0).toUpperCase();
           return f + str.substr(1);
@@ -45,7 +31,16 @@ angular.module('myApp.service.user', [])
           email: email,
           $priority: user.uid
         };
-        users.$save(uid);
+        users.$save(uid).then(
+          function(){ // success!
+            if (typeof callback === 'function'){
+              callback();
+            }
+          }, function(){ // error!
+              var err = 'Failure to create a new user';
+              callback(err);
+            }
+        );
       },
       updateDetails: function (user) {
         user.$update(user);

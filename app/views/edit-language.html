@@ -5,11 +5,10 @@
   <form name="languageform" novalidate ng-submit="addLanguage()">
     <code ng-show="error">{{error}}</code>
     <input type="text" placeholder="Name of Language" name="lang" class="form-control" ng-model="language.name"/>
-    <input type="text" placeholder="Native name" name="native-name" class="form-control" ng-model="language.nativeName"/>
-    <input type="submit" value="Add This Language" class="btn btn-primary"/>
+    <input type="text" placeholder="Native name" name="native-name" class="form-control" ng-model="language.localName"/>
+    <input type="submit" value="Add This Language" class="button"/>
   </form>
 </div>
-
-       <ul ng-repeat="language in data.languages">
-         <li>{{language.name}}</li>
-       </ul>
+<ul ng-repeat="language in data.languages | orderByPriority | orderObjects: 'name'">
+ <li>{{language.name}}</li>
+</ul>

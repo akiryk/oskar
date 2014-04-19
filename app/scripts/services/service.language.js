@@ -7,18 +7,15 @@ angular.module('myApp.service.language', [])
 
     var Language = {
       all: languages,
-
       find: function(id){
         return languages.$child(id);
-      },
-      findByName: function(name){
-        return languages.$child(name);
       },
       create: function(language){
         return languages.$add(language);
       },
       removeUserFromLang: function( user, langId) {
         languages.$child(langId).$child('speakers').$remove(user);
+        languages.$child(langId).$child('teachers').$remove(user);
       }
     };
     // Public API here

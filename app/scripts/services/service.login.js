@@ -2,8 +2,8 @@
 
 angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
 
-  .factory('loginService', ['$rootScope', '$firebaseSimpleLogin', 'firebaseRef', '$timeout',
-    function($rootScope, $firebaseSimpleLogin, firebaseRef, $timeout) {
+  .factory('loginService', ['$rootScope', '$firebaseSimpleLogin', '$timeout', 'firebaseRef', 'presenceService',
+    function($rootScope, $firebaseSimpleLogin, $timeout, firebaseRef, presenceService) {
 
       var auth = null;
 
@@ -13,7 +13,8 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
 
       return {
         init: function() {
-          return auth = $firebaseSimpleLogin(firebaseRef());
+          auth = $firebaseSimpleLogin(firebaseRef());
+          return auth;
         },
 
         /**
@@ -29,6 +30,7 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
             password: pass,
             rememberMe: true
           }).then(function(user) {
+            presenceService.start(user.uid);
             if( callback ) {
               callback(null, user);
             }
@@ -71,38 +73,3 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
       };
 
     }]);
-
-/*
-  .factory('profileCreator', ['firebaseRef', '$timeout', function(firebaseRef, $timeout) {
-    return function(id, email, callback) {
-
-      // Helper functions
-      var firstPartOfEmail = function(email) {
-        return ucfirst(email.substr(0, email.indexOf('@'))||'');
-      };
-
-      var ucfirst = function(str) {
-        // credits: http://kevin.vanzonneveld.net
-        str += '';
-        var f = str.charAt(0).toUpperCase();
-        return f + str.substr(1);
-      };
-
-      firebaseRef('users/'+id)
-        .set(
-          {
-            email: email,
-            username: firstPartOfEmail(email)
-          },
-        function(err) {
-          //err && console.error(err);
-          if( callback ) {
-            $timeout(function() {
-              callback(err);
-            });
-          }
-        }
-      );
-    };
-  }]);
-*/

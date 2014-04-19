@@ -17,10 +17,11 @@ angular.module('myApp.routes', ['ngRoute'])
 
     $routeProvider.when('/register', {
       templateUrl: 'views/register.html',
-      controller: 'LoginCtrl'
+      controller: 'RegisterCtrl'
     });
 
     $routeProvider.when('/edit-language', {
+      authRequired: true,
       templateUrl: 'views/edit-language.html',
       controller: 'LanguageCtrl'
     });

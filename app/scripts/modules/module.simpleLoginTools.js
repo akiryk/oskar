@@ -85,6 +85,7 @@ angular.module('simpleLoginTools', [])
  * </code>
  */
   .directive('ngShowAuth', function ($rootScope) {
+    console.log("dir");
     var loginState = 'logout';
     $rootScope.$on('$firebaseSimpleLogin:login',  function() { loginState = 'login'; });
     $rootScope.$on('$firebaseSimpleLogin:logout', function() { loginState = 'logout'; });
