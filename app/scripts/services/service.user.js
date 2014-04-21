@@ -10,6 +10,11 @@ angular.module('myApp.service.user', [])
     var users = $firebase(ref);
 
     var User = {
+
+      getAll: function() {
+        return users;
+      },
+
       create: function (user, callback) {
         var uid = user.uid,
             email = user.email;
@@ -29,6 +34,7 @@ angular.module('myApp.service.user', [])
           md5_hash: user.md5_hash,
           username: firstPartOfEmail(email),
           email: email,
+          uid: user.uid,
           $priority: user.uid
         };
         users.$save(uid).then(

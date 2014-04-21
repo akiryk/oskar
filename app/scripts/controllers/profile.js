@@ -17,12 +17,10 @@ angular.module('myApp')
         });
       });
 
-      var isConnected = presenceService.isConnected($routeParams.username);
-      isConnected.then(function(){
-        $scope.isConnected = true;
-      }, function(){
-        $scope.isConnected = false;
-      });
+      presenceService.getStatus($routeParams.username)
+        .then(function(connected){
+          $scope.isConnected = connected;
+        });
 
     }
 );

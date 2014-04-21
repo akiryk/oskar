@@ -1,3 +1,7 @@
 .error {
     color: #e50647;
 }
+
+.heavy {
+    font-weight: bold;
+}

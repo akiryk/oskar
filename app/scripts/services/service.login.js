@@ -30,7 +30,8 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
             password: pass,
             rememberMe: true
           }).then(function(user) {
-            presenceService.start(user.uid);
+            // Start monitoring presence on login. Necessary for now.
+            presenceService.startPresence();
             if( callback ) {
               callback(null, user);
             }
@@ -40,7 +41,6 @@ angular.module('myApp.service.login', ['firebase', 'myApp.service.firebase'])
         logout: function() {
           assertAuth();
           auth.$logout();
-          presenceService.end();
         },
 
         changePassword: function(opts) {

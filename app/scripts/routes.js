@@ -8,36 +8,35 @@ angular.module('myApp.routes', ['ngRoute'])
     $routeProvider.when('/', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
-    });
-
-    $routeProvider.when('/login', {
+    })
+    .when('/login', {
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl'
-    });
-
-    $routeProvider.when('/register', {
+    })
+    .when('/register', {
       templateUrl: 'views/register.html',
       controller: 'RegisterCtrl'
-    });
-
-    $routeProvider.when('/edit-language', {
+    })
+    .when('/edit-language', {
       authRequired: true,
       templateUrl: 'views/edit-language.html',
       controller: 'LanguageCtrl'
-    });
-
-    $routeProvider.when('/account', {
+    })
+    .when('/account', {
       authRequired: true,
       templateUrl: 'views/account.html',
       controller: 'AccountCtrl'
-    });
-
-    $routeProvider.when('/users/:username', {
+    })
+    .when('/users/:username', {
       templateUrl: 'views/profile.html',
       controller: 'ProfileCtrl'
-    });
-
-    $routeProvider.otherwise({redirectTo: '/'});
+    })
+    .when('/admin/users', {
+      authRequired: true,
+      templateUrl: 'views/admin/users.html',
+      controller: 'AdminCtrl'
+    })
+    .otherwise({redirectTo: '/'});
   }]);
 
 

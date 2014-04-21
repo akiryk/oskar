@@ -24,7 +24,7 @@ angular.module('myApp.filters', [])
         } else {
           return 0;
         }
-      }
+      };
     };
     return function(input, property){
       input.sort(sortByProp(property));

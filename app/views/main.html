@@ -5,14 +5,16 @@
     <option value="">Choose a language...</option>
   </select>
   <div ng-show="speakers">
-    <div ng-show="speakerCount">
-      <h4>Cool! There are {{ speakerCount }} people who would love to chat with you in {{ form.practiceLanguage.name }}!</h4>
+    <div ng-show="speakers.length">
+      <h4>Cool! There are {{ speakers.length }} people who would love to chat with you in {{ form.practiceLanguage.name }}!</h4>
       <div ng-repeat="speaker in speakers">
-        <a ng-href="/#/users/{{speaker.$id}}">{{speaker.username}}</a>
+        <a ng-class="{'heavy': speaker.connected}" ng-href="/#/users/{{speaker.uid}}">
+          {{speaker.user.username}} <span ng-show="speaker.connected">| Currently online!</span>
+        </a>
         <p>{{speaker.about}}</p>
       </div>
     </div>
-    <div ng-hide="speakerCount">
+    <div ng-hide="speakers.length">
       <h4>Aw, nuts! We can't find anyone who wants to help you learn {{ form.practiceLanguage.name }}. </h4>
     </div>
   </div>
