@@ -3,10 +3,11 @@
 An angular app running with Firebase.
 
 ###To run the app locally
-In console window:
-    cd path/to/localdirectory/oskar
+In the console window:
+
+    cd path/to/dir/oskar
     grunt serve
-    
+
 This will run node and will watch for changes. 
 
 ###File Structure
