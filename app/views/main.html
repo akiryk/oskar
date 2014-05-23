@@ -4,18 +4,17 @@
           ng-options="value.name for (key, value) in languages | orderByPriority | orderObjects: 'name'">
     <option value="">Choose a language...</option>
   </select>
-  <div ng-show="speakers">
-    {{speakers}}
-    <div ng-show="speakers.length">
-      <h4>Cool! There are {{ speakers.length }} people who would love to chat with you in {{ form.practiceLanguage.name }}!</h4>
-      <div ng-repeat="speaker in speakers">
+
+    <div ng-show="speakerCount > 1">
+      <h4>Cool! There are {{ speakerCount }} people who would love to chat with you in {{ form.practiceLanguage.name }}!</h4>
+      <div ng-repeat="(speakerId, speaker) in speakers">
         <a ng-class="{'heavy': speaker.connected}" ng-href="/#/users/{{speaker.uid}}">
-          {{speaker.user.username}} <span ng-show="speaker.connected">| Currently online!</span>
+          {{speaker.username}} <span ng-show="speaker.connected">| Currently online!</span>
         </a>
         <p>{{speaker.about}}</p>
       </div>
     </div>
-    <div ng-hide="speakers.length">
+    <div ng-show="speakerCount === 0">
       <h4>Aw, nuts! We can't find anyone who wants to help you learn {{ form.practiceLanguage.name }}. </h4>
     </div>
   </div>

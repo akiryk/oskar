@@ -8,21 +8,22 @@ myApp.controller('MainCtrl', function ($scope, userService, languageService, pre
   };
 
   $scope.findSpeakers = function(){
-    $scope.speakers = [];
-    var speakerObj = {};
+    $scope.speakerCount = 0;
+    $scope.speakers = {};
+
     angular.forEach($scope.form.practiceLanguage.teachers, function(username) {
-      speakerObj = {
-        user: userService.findByUsername(username),
-        uid: username
-      };
+      $scope.speakerCount++;
+      $scope.speakers[username] = userService.findByUsername(username);
+      // e.g. simplelogin:48: { email: adamkiryk@gmail.com, about: '', etc. }
 
       presenceService.getStatus(username)
         .then(function(connected){
-          console.log(username + ' is connected: ' + connected);
-          speakerObj.connected = connected;
+          $scope.speakers[username].connected = connected;
         });
-      $scope.speakers.push(speakerObj);
+      
+
     });
+
   };
 
 });

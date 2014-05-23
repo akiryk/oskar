@@ -37,7 +37,7 @@
 
   <form name="my-languages" novalidate ng-submit="updateUserLanguage()">
     <h1>Hi, {{user.firstname || user.username}}, what is your primary language?</h1>
-    <p>Because it's currently {{ languages[user.motherTongue].name }}</p>
+    <p>(hint: we think it's {{ languages[user.motherTongue].name }})</p>
     <select ng-model="userLanguage" required ng-options="key as value.name for (key, value) in languages"></select>
 
     <div class="form-group">

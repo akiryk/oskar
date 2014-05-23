@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.service.presence', [])
-  .factory('presenceService', function($rootScope, $firebase, $q, waitForAuth){
+  .factory('presenceService', function($rootScope, $firebase, $q){
 //    var authRef = new Firebase('https://oskar-lingo.firebaseio.com/.info/authenticated');
     var presenceRef = new Firebase('https://oskar-lingo.firebaseio.com/.info/connected');
     var userRef;
