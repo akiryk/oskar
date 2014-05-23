@@ -18,6 +18,7 @@ myApp.controller('MainCtrl', function ($scope, userService, languageService, pre
 
       presenceService.getStatus(username)
         .then(function(connected){
+          console.log(username + ' is connected: ' + connected);
           speakerObj.connected = connected;
         });
       $scope.speakers.push(speakerObj);

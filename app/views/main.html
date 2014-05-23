@@ -5,6 +5,7 @@
     <option value="">Choose a language...</option>
   </select>
   <div ng-show="speakers">
+    {{speakers}}
     <div ng-show="speakers.length">
       <h4>Cool! There are {{ speakers.length }} people who would love to chat with you in {{ form.practiceLanguage.name }}!</h4>
       <div ng-repeat="speaker in speakers">
