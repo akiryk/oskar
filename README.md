@@ -6,5 +6,9 @@
 2. grunt serve
 
 ###File Structure
-    This is a file
-      and this
+    oskar
+      app
+        This is where files for the client-side app belong. 
+        This includes (in the *scripts* directory) angular controllers, views, directives, etc.
+        This also includes (in the *views* directory) html templates. 
+
