@@ -28,7 +28,7 @@ This will run node and will watch for changes.
 + A user can see whether teachers of a given language are currently online.
 
 ###Some next steps
-+ Start working on WebRTC.
++ Start working on WebRTC. Hint: take a look here: http://akiryk.github.io/projects/chatcamp/media.html and look at files on local host.
 + Enable a user to join a video conversation with a teacher who is currently online (complex, but see https://delicious.com/akiryk)
 + Testing (complicated)
 + Enable require.js (this will be complicated I believe).
