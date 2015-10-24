@@ -1,6 +1,6 @@
 #Welcome to (codename) Oskar
 ***Description***
-An angular app running with Firebase.
+An angular app running with Firebase for pairing people together who are interesting in speaking a foreign language.
 
 ###To run the app locally
 In the console window:
@@ -26,6 +26,8 @@ This will run node and will watch for changes.
 + A user can find speakers who want to teach a given language.
 + Presence works using Firebase presence. 
 + A user can see whether teachers of a given language are currently online.
++ If both users are online and enable video on Chrome (and maybe Firefox), they can have a video chat with one another.
++ To test this out, go to [oskar](http://akiryk.github.io/projects/oskar) and login as test user molly@gmail.com and password: hello. Have a friend login as jerry@gmail.com, pw: hello. Now have the friend (Jerry) select "french" from the dropdown menu. If "Molly" is online, Jerry will see it and will be able to start a video chat. 
 
 ###Some next steps
 + Start working on WebRTC. Hint: take a look here: http://akiryk.github.io/projects/chatcamp/media.html and look at files on local host.
